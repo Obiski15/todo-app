@@ -1,12 +1,12 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
 function Footer() {
-  /* light: #9495A5 */
-
   return (
-    <Text className="text-[#5B5E7E] text-center">
-      Drag and drop to reorder list
-    </Text>
+    <View className="md:mb-[52px] mb-[72px]">
+      <Text className="text-secondary text-center">
+        Drag and drop to reorder list
+      </Text>
+    </View>
   );
 }
 

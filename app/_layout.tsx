@@ -3,12 +3,15 @@ import {
   DefaultTheme,
   ThemeProvider as NavigationThemeProvider,
 } from "@react-navigation/native";
-import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 
 import { ThemeProvider, useTheme } from "@/contexts/theme-context";
+import TodoProvider from "@/contexts/todo-context";
 import "./global.css";
+
+import { ConvexProvider, ConvexReactClient } from "convex/react";
+import { Stack } from "expo-router";
 
 export const unstable_settings = {
   anchor: "(tabs)",
@@ -28,9 +31,16 @@ function RootNavigator() {
 }
 
 export default function RootLayout() {
+  const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL!, {
+    unsavedChangesWarning: false,
+  });
   return (
     <ThemeProvider>
-      <RootNavigator />
+      <ConvexProvider client={convex}>
+        <TodoProvider>
+          <RootNavigator />
+        </TodoProvider>
+      </ConvexProvider>
     </ThemeProvider>
   );
 }

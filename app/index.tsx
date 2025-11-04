@@ -11,30 +11,28 @@ export default function HomeScreen() {
 
   return (
     <View className="flex-1 bg-background">
-      <View className="relative">
-        <Image
-          source={
-            theme === "light"
-              ? require("@/assets/images/bg-light.png")
-              : require("@/assets/images/bg-dark.jpg")
-          }
-          className="h-[200px] w-full md:h-[300px]"
-        />
+      <Image
+        source={
+          theme === "light"
+            ? require("@/assets/images/bg-light.png")
+            : require("@/assets/images/bg-dark.jpg")
+        }
+        className="absolute top-0 h-[200px] w-full md:h-[300px]"
+      />
 
-        <ScrollView className="absolute left-1/2 top-12 md:top-[70px] w-full max-w-[540px] -translate-x-1/2 px-6">
-          <View className="space-y-10 md:space-y-12">
-            <Header />
+      <ScrollView className="flex-1 px-6 pt-12 md:pt-[70px]">
+        <View className="mx-auto w-full max-w-[540px] gap-10 md:gap-12">
+          <Header />
 
-            <View className="space-y-4 md:space-y-6">
-              <CreateTodo />
+          <View className="gap-4 md:gap-6">
+            <CreateTodo />
 
-              <Todos />
-            </View>
-
-            <Footer />
+            <Todos />
           </View>
-        </ScrollView>
-      </View>
+
+          <Footer />
+        </View>
+      </ScrollView>
     </View>
   );
 }

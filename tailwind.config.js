@@ -8,10 +8,17 @@ module.exports = {
       colors: {
         foreground: "hsl(var(--color-foreground) / <alpha-value>)",
         background: "hsl(var(--color-background) / <alpha-value>)",
-        secondary: "hsl(var(--color-secondary) / <alpha-value>)",
+        secondary: {
+          DEFAULT: "hsl(var(--color-secondary) / <alpha-value>)",
+          active: "hsl(var(--color-secondary-active) / <alpha-value>)",
+        },
         primary: "hsl(var(--color-primary) / <alpha-value>)",
         muted: {
           foreground: "hsl(var(--color-muted-foreground) / <alpha-value>)",
+        },
+        link: {
+          DEFAULT: "hsl(var(--color-link) / <alpha-value>)",
+          active: "hsl(var(--color-link-active) / <alpha-value>)",
         },
         border: "hsl(var(--color-border) / <alpha-value>)",
         input: "hsl(var(--color-input) / <alpha-value>)",

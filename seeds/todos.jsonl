@@ -1,0 +1,10 @@
+{"status":"active","todo":"Complete project documentation"}
+{"status":"completed","todo":"Set up development environment"}
+{"status":"active","todo":"Review pull requests"}
+{"status":"active","todo":"Fix authentication bug"}
+{"status":"completed","todo":"Write unit tests for API endpoints"}
+{"status":"active","todo":"Update dependencies to latest versions"}
+{"status":"completed","todo":"Design new landing page"}
+{"status":"active","todo":"Optimize database queries"}
+{"status":"active","todo":"Implement dark mode feature"}
+{"status":"completed","todo":"Deploy to staging environment"}
