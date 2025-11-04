@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-foreground: 235 15% 35%;
+    --color-background: 0 0% 98%;
+    --color-card: 0 0% 100%;
+    --color-primary: 191 100% 67%;
+    --color-secondary: 286 87% 65%;
+    --color-muted-foreground: 233 11% 84%;
+    --color-white: 0 0% 100%;
+    --color-input: 236 9% 61%;
+    --color-border: 236 33% 92%;
+  }
+
+  .dark {
+    --color-foreground: 234 39% 85%;
+    --color-background: 235 21% 11%;
+    --color-card: 235 24% 19%;
+    --color-primary: 191 100% 67%;
+    --color-secondary: 286 87% 65%;
+    --color-white: 0 0% 100%;
+    --color-muted-foreground: 233 14% 35%;
+    --color-input: 234 11% 52%;
+    --color-border: 237 14% 26%;
+  }
+}
+
+@layer components {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
