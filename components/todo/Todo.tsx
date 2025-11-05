@@ -3,7 +3,8 @@ import { useTodo } from "@/contexts/todo-context";
 import { Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { Pressable, Text, View } from "react-native";
+import { useState } from "react";
+import { Pressable, TextInput, View } from "react-native";
 import Animated, {
   FadeInUp,
   FadeOut,
@@ -22,7 +23,8 @@ function Todo({
   id: string;
   index?: number;
 }) {
-  const { updateStatus, deleteTodo } = useTodo();
+  const { updateTodo, deleteTodo } = useTodo();
+  const [todoText, setTodoText] = useState(todo);
   const { theme } = useTheme();
 
   return (
@@ -34,7 +36,7 @@ function Todo({
     >
       <Radio
         onPress={() =>
-          updateStatus({
+          updateTodo({
             id: id as Id<"todos">,
             status: status === "active" ? "completed" : "active",
           })
@@ -42,15 +44,22 @@ function Todo({
         className={cn(status === "completed" && "bg-radio")}
       />
 
-      <View className="flex-1 flex flex-row justify-between items-center gap-2">
-        <Text
+      <View className="flex flex-1 flex-row items-center justify-between gap-2">
+        <TextInput
+          onBlur={() =>
+            todo !== todoText.trim() &&
+            updateTodo({
+              id: id as Id<"todos">,
+              todo: todoText,
+            })
+          }
+          onChangeText={setTodoText}
+          value={todoText}
           className={cn(
-            "text-foreground text-xs md:text-lg tracking-[-0.17px] md:tracking-[-0.25px] flex-1",
+            "flex-1 text-xs tracking-[-0.17px] text-foreground focus-within:outline-none focus-visible:border-none md:text-lg md:tracking-[-0.25px]",
             status === "completed" && "text-muted-foreground line-through"
           )}
-        >
-          {todo}
-        </Text>
+        />
 
         <Pressable
           className="hidden group-hover:inline-block"

@@ -28,9 +28,26 @@ export const deleteTodo = mutation({
   handler: async ({ db }, { id }) => await db.delete(id),
 });
 
-export const updateTodoStatus = mutation({
-  args: { id: v.id("todos"), status: v.string() },
-  handler: async ({ db }, { id, status }) => await db.patch(id, { status }),
+export const updateTodo = mutation({
+  args: {
+    id: v.id("todos"),
+    status: v.optional(v.string()),
+    todo: v.optional(v.string()),
+  },
+  handler: async ({ db }, { id, status, todo }) => {
+    let values: Record<string, string> = {};
+
+    if (!status && !todo) {
+      throw new Error(
+        "Update requires at least one of status or todo to be provided"
+      );
+    }
+
+    if (status) values["status"] = status;
+    if (todo) values["todo"] = todo;
+
+    return await db.patch(id, values);
+  },
 });
 
 export const clearTodos = mutation({

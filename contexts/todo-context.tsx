@@ -8,21 +8,19 @@ type Status = "all" | "active" | "completed";
 
 interface TodoContextType {
   clearCompletedTodos: () => Promise<void>;
-  todos: ReturnType<typeof useQuery<typeof api.todos.getTodos>>;
-  updateStatus: ReturnType<
-    typeof useMutation<typeof api.todos.updateTodoStatus>
-  >;
-  addTodo: ReturnType<typeof useMutation<typeof api.todos.addTodo>>;
+  updateTodo: ReturnType<typeof useMutation<typeof api.todos.updateTodo>>;
   deleteTodo: ReturnType<typeof useMutation<typeof api.todos.deleteTodo>>;
-  status: Status;
+  addTodo: ReturnType<typeof useMutation<typeof api.todos.addTodo>>;
+  todos: ReturnType<typeof useQuery<typeof api.todos.getTodos>>;
   setStatus: React.Dispatch<React.SetStateAction<Status>>;
+  status: Status;
 }
 
 const TodoContext = createContext<TodoContextType | undefined>(undefined);
 
 function TodoProvider({ children }: { children: React.ReactNode }) {
   const [status, setStatus] = useState<Status>("all");
-  const updateStatus = useMutation(api.todos.updateTodoStatus);
+  const updateTodo = useMutation(api.todos.updateTodo);
   const todos = useQuery(api.todos.getTodos, { status });
   const clearTodos = useMutation(api.todos.clearTodos);
   const deleteTodo = useMutation(api.todos.deleteTodo);
@@ -38,7 +36,7 @@ function TodoProvider({ children }: { children: React.ReactNode }) {
         clearCompletedTodos,
         todos,
         addTodo,
-        updateStatus,
+        updateTodo,
         deleteTodo,
         setStatus,
         status,
