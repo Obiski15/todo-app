@@ -2,9 +2,13 @@
 module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
-  darkMode: "class", // Enable class-based dark mode
+  darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["SpaceMono", "system-ui", "sans-serif"],
+        mono: ["SpaceMono", "monospace"],
+      },
       colors: {
         foreground: "hsl(var(--color-foreground) / <alpha-value>)",
         background: "hsl(var(--color-background) / <alpha-value>)",

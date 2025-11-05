@@ -49,7 +49,7 @@ function Todos() {
 
   if (!todos)
     return (
-      <View className="p-10">
+      <View className="p-10 bg-card rounded-[5px]">
         <Text className="text-foreground">Loading...</Text>
       </View>
     );
@@ -62,12 +62,13 @@ function Todos() {
             <Text className="text-foreground">No todos found</Text>
           </View>
         ) : (
-          todos.map((todo) => (
+          todos.map((todo, index) => (
             <Todo
               key={todo._id}
               todo={todo.todo}
               id={todo._id}
               status={todo.status}
+              index={index}
             />
           ))
         )}

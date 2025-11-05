@@ -1,8 +1,8 @@
 import { useTodo } from "@/contexts/todo-context";
+import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { TextInput, View } from "react-native";
 import Radio from "../ui/Radio";
-import { cn } from "@/lib/utils";
 
 function CreateTodo() {
   const [status, setStatus] = useState<"active" | "completed">("active");
@@ -10,6 +10,8 @@ function CreateTodo() {
   const { addTodo } = useTodo();
 
   async function handleSubmit() {
+    if (!todo.trim()) return;
+
     await addTodo({ status, todo: todo.trim() });
     setTodo("");
   }

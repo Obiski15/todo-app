@@ -4,22 +4,34 @@ import { Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Pressable, Text, View } from "react-native";
+import Animated, {
+  FadeInUp,
+  FadeOut,
+  LinearTransition,
+} from "react-native-reanimated";
 import Radio from "../ui/Radio";
 
 function Todo({
   todo,
   status,
   id,
+  index = 0,
 }: {
   todo: string;
   status: string;
   id: string;
+  index?: number;
 }) {
   const { updateStatus, deleteTodo } = useTodo();
   const { theme } = useTheme();
 
   return (
-    <View className="px-6 group border-border border-b py-5 flex flex-row justify-start items-center gap-6">
+    <Animated.View
+      entering={FadeInUp.duration(300).delay(index * 50)}
+      exiting={FadeOut.duration(200)}
+      layout={LinearTransition.springify()}
+      className="group flex flex-row items-center justify-start gap-6 border-b border-border px-6 py-5"
+    >
       <Radio
         onPress={() =>
           updateStatus({
@@ -53,7 +65,7 @@ function Todo({
           />
         </Pressable>
       </View>
-    </View>
+    </Animated.View>
   );
 }
 
