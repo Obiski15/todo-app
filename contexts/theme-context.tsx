@@ -29,10 +29,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // Determine the actual color scheme based on theme setting
   const colorScheme: ColorScheme =
     theme === "system"
-      ? systemColorScheme ?? "light"
+      ? (systemColorScheme ?? "light")
       : theme === "dark"
-      ? "dark"
-      : "light";
+        ? "dark"
+        : "light";
 
   // Apply dark class to web root element
   useEffect(() => {
@@ -77,7 +77,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   if (isLoading) {
-    return null; // Or a loading screen
+    return null;
   }
 
   return (

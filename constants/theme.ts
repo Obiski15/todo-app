@@ -5,7 +5,6 @@
 
 import { Platform } from "react-native";
 
-// checked linear-gradient(135deg, #55DDFF 0%, #C058F3 100%);
 export const Colors = {
   light: {
     text: "#494C6B",
